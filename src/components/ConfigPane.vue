@@ -61,4 +61,24 @@ export default defineComponent({
 });
 </script>
 
-<style scoped></style>
+<style scoped>
+.nes-select:first-child {
+  margin-right: 20px;
+}
+.nes-select select {
+  border-image-source: unset !important;
+  border: 1px solid white;
+}
+.nes-select:after {
+  width: 0;
+  height: 0;
+  box-shadow: unset !important;
+
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 20px solid white;
+  transform: rotateX(30deg);
+  top: calc(50% - 10px);
+  right: 20px;
+}
+</style>

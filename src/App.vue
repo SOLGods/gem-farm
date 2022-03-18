@@ -1,23 +1,12 @@
 <template>
   <div class="app-container relative h-full min-h-screen">
 <!--    <TheNavBar />-->
-    <div class="nav-links-wrapper pt-20 text-white">
-      <div class="nav-links-item">
-        <router-link class="nav-link" to="/manager">FARM MANAGER</router-link>
-      </div>
-      <router-link to="/" class="px-10 flex justify-center align-middle nav-link">
-        <p class="text-4xl pt-3 px-1 mt-1 text-white">GEM</p>
-        <img :width="50" :height="50" src="./assets/400x600.gif" />
-        <p class="text-4xl pt-3 px-2 mt-1 text-white">FARM</p>
-      </router-link>
-      <div class="nav-links-item">
-        <router-link class="nav-link" to="/farmer">FARMER</router-link>
-      </div>
+    <div class="nav-links-wrapper pt-14 text-white">
+      <h2 class="nav-title">The $GOD Temple</h2>
     </div>
     <div class="nav-links-underline-wrapper">
       <div class="nav-links-underline"></div>
     </div>
-    <div class="nav-description italic mt-5 text-center text-white">by Gemworks</div>
 
     <div class="main-container-wrapper">
       <div class="py-10 main-container">
@@ -27,7 +16,6 @@
 
     <div class="pt-10"></div>
     <TheCat />
-    <TheFooter />
 <!--    <video class="background-video" src="./assets/lava.mp4" loop muted autoplay></video>-->
   </div>
 </template>
@@ -44,6 +32,7 @@ export default {
 <style>
 * {
   /*font-family: 'Press Start 2P', monospace;*/
+  color: white;
 }
 input[type='radio']:checked + span {
   @apply text-black;
@@ -61,6 +50,13 @@ input[type='radio']:checked + span {
   min-height: 100%;
   z-index: -1;
   object-fit: cover;
+}
+.nav-title {
+  text-align: center;
+  color: white;
+  font-size: 58px;
+  font-weight: bold;
+  font-family: 'Nanum Myeongjo', serif;
 }
 .nav-links-wrapper {
   display: flex;

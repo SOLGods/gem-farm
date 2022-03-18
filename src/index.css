@@ -3,3 +3,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.title {
+    background-color: transparent !important;
+}
+
+.nes-container {
+    background-color: #212529 !important;
+    border: 0 !important;
+}
