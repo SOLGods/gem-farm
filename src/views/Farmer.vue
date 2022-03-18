@@ -1,6 +1,6 @@
 <template>
   <ConfigPane />
-  <div v-if="!wallet" class="text-center">Pls connect (burner) wallet</div>
+  <div v-if="!wallet" class="text-center text-white">Pls connect (burner) wallet</div>
   <div v-else>
     <!--farm address-->
     <div class="nes-container with-title mb-10">
