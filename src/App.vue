@@ -17,10 +17,12 @@
     <div class="nav-links-underline-wrapper">
       <div class="nav-links-underline"></div>
     </div>
-    <div class="italic mt-5 text-center text-white">by Gemworks</div>
+    <div class="nav-description italic mt-5 text-center text-white">by Gemworks</div>
 
-    <div class="p-10">
-      <router-view />
+    <div class="main-container-wrapper">
+      <div class="py-10 main-container">
+        <router-view />
+      </div>
     </div>
 
     <div class="pt-10"></div>
@@ -41,7 +43,7 @@ export default {
 
 <style>
 * {
-  font-family: 'Press Start 2P', monospace;
+  /*font-family: 'Press Start 2P', monospace;*/
 }
 input[type='radio']:checked + span {
   @apply text-black;
@@ -66,7 +68,7 @@ input[type='radio']:checked + span {
   justify-content: center;
 }
 .nav-links-underline {
-  width: 60%;
+  width: 1024px;
   height: 4px;
   border-radius: 100%;
   background-color: #FEBD4D;
@@ -80,13 +82,25 @@ input[type='radio']:checked + span {
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 192px;
 }
 .nav-link {
   text-decoration: none !important;
   transition: all .5s ease;
+  font-family: 'Press Start 2P', monospace;
+}
+.nav-description {
+  font-family: 'Press Start 2P', monospace;
 }
 .nav-link:hover {
   color: white;
   text-shadow: 0 0 3px #FEBD4D;
+}
+.main-container {
+  width: 1024px;
+}
+.main-container-wrapper {
+  display: flex;
+  justify-content: center;
 }
 </style>
