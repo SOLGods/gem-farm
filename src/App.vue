@@ -56,7 +56,7 @@ input[type='radio']:checked + span {
   color: white;
   font-size: 58px;
   font-weight: bold;
-  font-family: 'Nanum Myeongjo', serif;
+  font-family: 'Playfair Display', serif;
 }
 .nav-links-wrapper {
   display: flex;

@@ -1,14 +1,52 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&display=swap'); /* ./src/index.css */
-@tailwind base;
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');@tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 .title {
     background-color: transparent !important;
+    font-family: 'Playfair Display', serif;
+    font-size: 28px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    margin-bottom: 15px !important;
+    position: static !important;
 }
 
 .nes-container {
-    background-color: #212529 !important;
+    background-color: #111111 !important;
     border: 0 !important;
+}
+
+.app-btn {
+    border: 0;
+    background-color: #212529 !important;
+    padding: 10px 15px;
+    color: white;
+    border-radius: 5px;
+    transition: all .3s ease;
+}
+.app-btn.is-primary {
+    box-shadow: 0 0 5px #209CEE;
+}
+.app-btn.is-primary:hover {
+    box-shadow: 0 0 10px #209CEE;
+}
+.app-btn.is-success {
+    box-shadow: 0 0 5px #92CC41;
+}
+.app-btn.is-success:hover {
+    box-shadow: 0 0 10px #92CC41;
+}
+.app-btn.is-warning {
+    box-shadow: 0 0 5px #F7D51D;
+}
+.app-btn.is-warning:hover {
+    box-shadow: 0 0 10px #F7D51D;
+}
+.app-btn.is-error {
+    box-shadow: 0 0 5px #E76E55;
+}
+.app-btn.is-error:hover {
+    box-shadow: 0 0 10px #E76E55;
 }

@@ -337,7 +337,7 @@ export default defineComponent({
   font-size: 58px;
   font-weight: bold;
   margin-top: 25px;
-  font-family: 'Nanum Myeongjo', serif;
+  font-family: 'Playfair Display', serif;
 }
 .farmer-stake-wrapper {
   display: flex;
@@ -365,7 +365,7 @@ export default defineComponent({
 .farmer-stake-title {
   color: white;
   text-align: center;
-  font-family: 'Nanum Myeongjo', serif;
+  font-family: 'Playfair Display', serif;
   font-size: 30px;
 }
 .farmer-stake-button {
