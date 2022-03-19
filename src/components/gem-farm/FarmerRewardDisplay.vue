@@ -1,5 +1,5 @@
 <template>
-  <div class="nes-container with-title">
+  <div class="nes-container reward with-title">
     <p class="title">{{ title }}</p>
     <div class="mb-2">Accrued reward: {{ reward.accruedReward }}</div>
     <div class="mb-2">Paid out reward: {{ reward.paidOutReward }}</div>
@@ -66,4 +66,15 @@ export default defineComponent({
 });
 </script>
 
-<style scoped></style>
+<style scoped>
+.reward {
+  background-color: #212529 !important;
+  height: 100%;
+}
+.bg-black {
+  background-color: #111111;
+  padding: 0 5px;
+  margin: 0 -5px 0.5rem -5px;
+  width: calc(100% + 10px);
+}
+</style>

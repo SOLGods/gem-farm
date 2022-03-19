@@ -1,13 +1,6 @@
 <template>
-  <div
-    class="m-1 card flex justify-center"
-    :class="{ 'card-selected': selected }"
-    @click="toggleSelect"
-  >
-    <img
-      :src="nft.externalMetadata.image"
-      :alt="nft.onchainMetadata.data.name"
-    />
+  <div class="m-1 card flex justify-center" :class="{ 'card-selected': selected }" @click="toggleSelect">
+    <img :src="nft.externalMetadata.image" :alt="nft.onchainMetadata.data.name"/>
   </div>
 </template>
 
@@ -57,6 +50,6 @@ img {
 
 .card-selected {
   @apply border-4 border-solid;
-  border-color: black !important;
+  border-color: wheat !important;
 }
 </style>

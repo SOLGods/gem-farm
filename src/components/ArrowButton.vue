@@ -1,13 +1,5 @@
 <template>
-  <button :disabled="disabled">
-    <img
-      src="../assets/play.png"
-      alt="right"
-      :width="60"
-      :height="60"
-      :class="{ left: left, disabled: disabled }"
-    />
-  </button>
+  <button class="arrow" :disabled="disabled" :class="{ left: left, disabled: disabled }"></button>
 </template>
 
 <script lang="ts">
@@ -24,9 +16,13 @@ export default defineComponent({
 </script>
 
 <style scoped>
-button,
-img {
+button {
   outline: none !important;
+  width: 0;
+  height: 0;
+  border-top: 20px solid transparent;
+  border-bottom: 20px solid transparent;
+  border-left: 20px solid white;
 }
 
 .left {

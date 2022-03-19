@@ -1,12 +1,12 @@
 <template>
   <!--control buttons-->
-  <div class="mb-10 flex justify-center">
+  <div class="mb-20 flex justify-center">
     <button
       v-if="
         (toWalletNFTs && toWalletNFTs.length) ||
         (toVaultNFTs && toVaultNFTs.length)
       "
-      class="nes-btn is-primary mr-5"
+      class="app-btn is-primary mr-5"
       @click="moveNFTsOnChain"
     >
       Move Gems!
@@ -25,7 +25,7 @@
     />
 
     <!--mid-->
-    <div class="m-2 flex flex-col">
+    <div class="my-2 mx-5 flex flex-col">
       <ArrowButton
         :disabled="vaultLocked"
         class="my-2"

@@ -35,4 +35,13 @@ export default defineComponent({
 });
 </script>
 
-<style scoped></style>
+<style scoped>
+.nes-container {
+  position: relative;
+}
+.title {
+  position: absolute !important;
+  top: -45px;
+  left: 0;
+}
+</style>
