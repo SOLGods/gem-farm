@@ -42,6 +42,13 @@ img {
 .card {
   width: 150px;
   height: 150px;
+  border-color: rgba(255, 255, 255, .5) !important;
+  transition: border .5s ease;
+  @apply border-4 border-solid;
+}
+
+.card:hover {
+  border-color: white !important;
 }
 
 .card:hover {
@@ -49,7 +56,6 @@ img {
 }
 
 .card-selected {
-  @apply border-4 border-solid;
-  border-color: wheat !important;
+  border-color: white !important;
 }
 </style>

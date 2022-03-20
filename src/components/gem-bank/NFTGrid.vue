@@ -38,10 +38,12 @@ export default defineComponent({
 <style scoped>
 .nes-container {
   position: relative;
+  padding: 0 !important;
+  background-color: transparent !important;
 }
 .title {
   position: absolute !important;
-  top: -45px;
+  top: -60px;
   left: 0;
 }
 </style>
