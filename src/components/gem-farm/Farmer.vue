@@ -1,51 +1,54 @@
 <template>
   <div>
-    <ConfigPane />
-    <div v-if="!wallet" class="text-center connect-wallet-text">Pls connect (burner) wallet</div>
-    <div v-else>
-      <!--farm address-->
-      <div class="nes-container with-title mb-10">
-        <p class="title">Connect to a Farm</p>
-        <div class="nes-field mb-7">
-          <label for="farm">Farm address:</label>
-          <input readonly id="farm" class="farm-input mb-2" v-model="farm_address" />
-        </div>
-      </div>
-
-      <div v-if="farmerAcc">
-        <FarmerDisplay
-            :key="farmerAcc"
-            :farm="farm_address"
-            :farmAcc="farmAcc"
-            :farmer="farmer"
-            :farmerAcc="farmerAcc"
-            class="mb-10"
-            @refresh-farmer="handleRefreshFarmer"
-        />
-        <Vault :key="farmerAcc" class="mb-10" :vault="farmerAcc.vault.toBase58()" @selected-wallet-nft="handleNewSelectedNFT">
-          <button v-if="farmerState === 'staked' && selectedNFTs.length > 0" class="app-btn is-primary mr-5" @click="addGems">
-            Add Gems (resets staking)
-          </button>
-          <button v-if="farmerState === 'unstaked'" class="app-btn is-success mr-5" @click="beginStaking">
-            Begin staking
-          </button>
-          <button v-if="farmerState === 'staked'" class="app-btn is-error mr-5" @click="endStaking">
-            End staking
-          </button>
-          <button v-if="farmerState === 'pendingCooldown'" class="app-btn is-error mr-5" @click="endStaking">
-            End cooldown
-          </button>
-          <button class="app-btn is-warning" @click="claim">
-            Claim {{ availableA }} A / {{ availableB }} B
-          </button>
-        </Vault>
-      </div>
+    <video ref="video" class="background-video" src="https://files.catbox.moe/ztagqm.webm" muted></video>
+    <div class="farmer-content">
+      <ConfigPane />
+      <div v-if="!wallet" class="text-center connect-wallet-text">Pls connect (burner) wallet</div>
       <div v-else>
-        <div class="w-full text-center mb-5 connect-wallet-text">
-          Farmer account not found :( Create a new one?
+        <!--farm address-->
+        <div class="nes-container with-title mb-10">
+          <p class="title">Connect to a Farm</p>
+          <div class="nes-field mb-7">
+            <label for="farm">Farm address:</label>
+            <input readonly id="farm" class="farm-input mb-2" v-model="farm_address" />
+          </div>
         </div>
-        <div class="w-full text-center">
-          <button class="farmer-stake-buttons-item" @click="initFarmer">New Farmer</button>
+
+        <div v-if="farmerAcc">
+          <FarmerDisplay
+              :key="farmerAcc"
+              :farm="farm_address"
+              :farmAcc="farmAcc"
+              :farmer="farmer"
+              :farmerAcc="farmerAcc"
+              class="mb-10"
+              @refresh-farmer="handleRefreshFarmer"
+          />
+          <Vault :key="farmerAcc" class="mb-10" :vault="farmerAcc.vault.toBase58()" @selected-wallet-nft="handleNewSelectedNFT">
+            <button v-if="farmerState === 'staked' && selectedNFTs.length > 0" class="app-btn is-primary mr-5" @click="addGems">
+              Add Gems (resets staking)
+            </button>
+            <button v-if="farmerState === 'unstaked'" class="app-btn is-success mr-5" @click="beginStaking">
+              Begin staking
+            </button>
+            <button v-if="farmerState === 'staked'" class="app-btn is-error mr-5" @click="endStaking">
+              End staking
+            </button>
+            <button v-if="farmerState === 'pendingCooldown'" class="app-btn is-error mr-5" @click="endStaking">
+              End cooldown
+            </button>
+            <button class="app-btn is-warning" @click="claim">
+              Claim {{ availableA }} A / {{ availableB }} B
+            </button>
+          </Vault>
+        </div>
+        <div v-else>
+          <div class="w-full text-center mb-5 connect-wallet-text">
+            Farmer account not found :( Create a new one?
+          </div>
+          <div class="w-full text-center">
+            <button class="farmer-stake-buttons-item" @click="initFarmer">New Farmer</button>
+          </div>
         </div>
       </div>
     </div>
@@ -92,6 +95,7 @@ export default defineComponent({
     // --------------------------------------- farmer details
     const farm = ref<string>();
     const farmAcc = ref<any>();
+    const video = ref<any>();
 
     const farmerIdentity = ref<string>();
     const farmerAcc = ref<any>();
@@ -165,10 +169,23 @@ export default defineComponent({
 
     // --------------------------------------- staking
     const beginStaking = async () => {
-      await gf.stakeWallet(new PublicKey(farm.value!));
-      await fetchFarmer();
-      selectedNFTs.value = [];
+      try {
+        await gf.stakeWallet(new PublicKey(farm.value!));
+        playVideo()
+        await fetchFarmer();
+        selectedNFTs.value = [];
+      } catch (error) {
+        playVideo()
+      }
     };
+
+    const playVideo = () => {
+      video.value.style.opacity = '1'
+      video.value.play()
+      video.value.onended = () => {
+        video.value.style.opacity = '0'
+      };
+    }
 
     const endStaking = async () => {
       await gf.unstakeWallet(new PublicKey(farm.value!));
@@ -246,6 +263,7 @@ export default defineComponent({
       selectedNFTs,
       handleNewSelectedNFT,
       addGems,
+      video
     };
   },
 });
@@ -273,5 +291,20 @@ export default defineComponent({
   background: #212529;
   outline: 0;
   padding: 0 15px;
+}
+.background-video {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+  z-index: 0;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity .5s ease;
+}
+.farmer-content {
+  position: relative;
+  z-index: 1;
 }
 </style>

@@ -1,11 +1,13 @@
 <template>
   <div class="app-container relative h-full min-h-screen">
 <!--    <TheNavBar />-->
-    <div class="nav-links-wrapper pt-14 text-white">
-      <h2 class="nav-title">The $GOD Temple</h2>
-    </div>
-    <div class="nav-links-underline-wrapper">
-      <div class="nav-links-underline"></div>
+    <div class="app-header">
+      <div class="nav-links-wrapper pt-14 text-white">
+        <h2 class="nav-title">The $GOD Temple</h2>
+      </div>
+      <div class="nav-links-underline-wrapper">
+        <div class="nav-links-underline"></div>
+      </div>
     </div>
 
     <div class="main-container-wrapper">
@@ -16,7 +18,6 @@
 
     <div class="pt-10"></div>
     <TheCat />
-<!--    <video class="background-video" src="./assets/lava.mp4" loop muted autoplay></video>-->
   </div>
 </template>
 
@@ -41,15 +42,7 @@ input[type='radio']:checked + span {
   background: url("./assets/logo_nft.png") no-repeat;
   background-position: center;
   background-size: cover;
-}
-.background-video {
-  position: fixed;
-  right: 0;
-  bottom: 0;
-  min-width: 100%;
-  min-height: 100%;
-  z-index: -1;
-  object-fit: cover;
+  position: relative;
 }
 .nav-title {
   text-align: center;
@@ -98,5 +91,9 @@ input[type='radio']:checked + span {
 .main-container-wrapper {
   display: flex;
   justify-content: center;
+}
+.app-header {
+  position: relative;
+  z-index: 2;
 }
 </style>
