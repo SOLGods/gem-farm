@@ -1,6 +1,9 @@
 <template>
   <div>
-    <video ref="video" class="background-video" src="https://files.catbox.moe/ztagqm.webm" muted></video>
+    <video ref="video" class="background-video" muted>
+      <source class="background-video-source" src="../../assets/bottom_hor.webm" type='video/webm'>
+      <source class="background-video-source" src="../../assets/bottom_hor.mp4" type='video/mp4'>
+    </video>
     <div class="farmer-content">
       <ConfigPane />
       <div v-if="!wallet" class="text-center connect-wallet-text">Pls connect (burner) wallet</div>
