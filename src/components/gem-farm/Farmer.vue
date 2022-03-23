@@ -1,6 +1,6 @@
 <template>
   <div>
-    <video ref="video" class="background-video" muted>
+    <video ref="video" class="background-video" muted loop>
       <source class="background-video-source" src="../../assets/bottom_hor.webm" type='video/webm'>
       <source class="background-video-source" src="../../assets/bottom_hor.mp4" type='video/mp4'>
     </video>
@@ -185,9 +185,9 @@ export default defineComponent({
     const playVideo = () => {
       video.value.style.opacity = '1'
       video.value.play()
-      video.value.onended = () => {
-        video.value.style.opacity = '0'
-      };
+      // video.value.onended = () => {
+      //   video.value.style.opacity = '0'
+      // };
     }
 
     const endStaking = async () => {
