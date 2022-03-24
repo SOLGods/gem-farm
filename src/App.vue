@@ -44,6 +44,11 @@ input[type='radio']:checked + span {
   background-size: cover;
   position: relative;
 }
+@media (max-width: 767px) {
+  .app-container {
+    background-image: url("./assets/logo_nft_mobile.png");
+  }
+}
 .nav-title {
   text-align: center;
   color: white;

@@ -46,4 +46,9 @@ export default defineComponent({
   top: -60px;
   left: 0;
 }
+@media (max-width: 767px) {
+  .title {
+    top: -84px;
+  }
+}
 </style>

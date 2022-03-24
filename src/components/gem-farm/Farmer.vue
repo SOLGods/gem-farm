@@ -1,8 +1,14 @@
 <template>
   <div>
     <video ref="video" class="background-video" muted loop>
-      <source class="background-video-source" src="../../assets/bottom_hor.webm" type='video/webm'>
-      <source class="background-video-source" src="../../assets/bottom_hor.mp4" type='video/mp4'>
+      <template v-if="isMobile">
+        <source src="../../../public/videos/bottom_ver.webm" type='video/webm'>
+        <source src="../../../public/videos/bottom_ver.mp4" type='video/mp4'>
+      </template>
+      <template v-else>
+        <source src="../../../public/videos/bottom_hor.webm" type='video/webm'>
+        <source src="../../../public/videos/bottom_hor.mp4" type='video/mp4'>
+      </template>
     </video>
     <div class="farmer-content">
       <ConfigPane />
@@ -93,9 +99,14 @@ export default defineComponent({
     //needed in case we switch in from another window
     onMounted(async () => {
       await freshStart();
+      updateVideoFiles()
+      window.addEventListener('resize', () => {
+        updateVideoFiles()
+      });
     });
 
     // --------------------------------------- farmer details
+    const isMobile = ref<boolean>();
     const farm = ref<string>();
     const farmAcc = ref<any>();
     const video = ref<any>();
@@ -111,6 +122,10 @@ export default defineComponent({
     watch(farm, async () => {
       await freshStart();
     });
+
+    const updateVideoFiles = () => {
+      isMobile.value = document.documentElement.clientWidth <= 767
+    };
 
     const updateAvailableRewards = async () => {
       availableA.value = farmerAcc.value.rewardA.accruedReward
@@ -266,7 +281,8 @@ export default defineComponent({
       selectedNFTs,
       handleNewSelectedNFT,
       addGems,
-      video
+      video,
+      isMobile
     };
   },
 });
