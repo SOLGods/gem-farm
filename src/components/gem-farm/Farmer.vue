@@ -12,7 +12,7 @@
     </video>
     <div class="farmer-content">
       <ConfigPane />
-      <div v-if="!wallet" class="text-center connect-wallet-text">Pls connect (burner) wallet</div>
+      <div v-if="!wallet" class="text-center connect-wallet-text">Connect wallet</div>
       <div v-else>
         <!--farm address-->
         <div class="nes-container with-title mb-10">

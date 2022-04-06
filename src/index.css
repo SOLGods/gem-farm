@@ -3,6 +3,14 @@
 @tailwind components;
 @tailwind utilities;
 
+
+@font-face {
+    font-family: 'Medieval English';
+    src: url('./assets/fonts/Medieval-English.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
 .title {
     background-color: transparent !important;
     font-family: 'Playfair Display', serif;

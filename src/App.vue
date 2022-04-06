@@ -54,7 +54,7 @@ input[type='radio']:checked + span {
   color: white;
   font-size: 58px;
   font-weight: bold;
-  font-family: 'Playfair Display', serif;
+  font-family: 'Medieval English', serif;
 }
 .nav-links-wrapper {
   display: flex;
