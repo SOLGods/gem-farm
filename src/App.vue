@@ -17,16 +17,14 @@
     </div>
 
     <div class="pt-10"></div>
-    <TheCat />
   </div>
 </template>
 
 <script>
 import TheNavBar from '@/components/TheNavBar';
 import TheFooter from '@/components/gem-farm/TheFooter';
-import TheCat from '@/components/gem-farm/TheCat';
 export default {
-  components: { TheCat, TheFooter, TheNavBar },
+  components: { TheFooter, TheNavBar },
 };
 </script>
 
@@ -54,7 +52,7 @@ input[type='radio']:checked + span {
   color: white;
   font-size: 58px;
   font-weight: bold;
-  font-family: 'Medieval English', serif;
+  font-family: 'Playfair Display', serif;
 }
 .nav-links-wrapper {
   display: flex;

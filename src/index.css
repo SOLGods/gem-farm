@@ -11,6 +11,14 @@
     font-style: normal;
 }
 
+html {
+    cursor: unset !important;
+}
+
+.nes-select select {
+    cursor: pointer !important;
+}
+
 .title {
     background-color: transparent !important;
     font-family: 'Playfair Display', serif;

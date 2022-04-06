@@ -11,28 +11,10 @@
       </template>
     </video>
     <div class="farmer-content">
-      <ConfigPane />
+      <ConfigPane :farm_address="farm_address" @update-farm-address="$emit('update-farm-address', $event)" />
       <div v-if="!wallet" class="text-center connect-wallet-text">Connect wallet</div>
       <div v-else>
-        <!--farm address-->
-        <div class="nes-container with-title mb-10">
-          <p class="title">Connect to a Farm</p>
-          <div class="nes-field mb-7">
-            <label for="farm">Farm address:</label>
-            <input readonly id="farm" class="farm-input mb-2" v-model="farm_address" />
-          </div>
-        </div>
-
         <div v-if="farmerAcc">
-          <FarmerDisplay
-              :key="farmerAcc"
-              :farm="farm_address"
-              :farmAcc="farmAcc"
-              :farmer="farmer"
-              :farmerAcc="farmerAcc"
-              class="mb-10"
-              @refresh-farmer="handleRefreshFarmer"
-          />
           <Vault :key="farmerAcc" class="mb-10" :vault="farmerAcc.vault.toBase58()" @selected-wallet-nft="handleNewSelectedNFT">
             <button v-if="farmerState === 'staked' && selectedNFTs.length > 0" class="app-btn is-primary mr-5" @click="addGems">
               Add Gems (resets staking)
@@ -80,14 +62,13 @@ export default defineComponent({
   components: { Vault, FarmerDisplay, ConfigPane },
   props: {
     farm_address: {
-      type: String,
-      default: ''
+      type: Object,
+      default: () => {
+        return {}
+      }
     }
   },
-  mounted() {
-    this.farm = this.farm_address
-  },
-  setup() {
+  setup(props) {
     const { wallet, getWallet } = useWallet();
     const { cluster, getConnection } = useCluster();
 
@@ -96,8 +77,13 @@ export default defineComponent({
       await freshStart();
     });
 
+    watch(() => props.farm_address, (value) => {
+      farm.value = props.farm_address.id
+    });
+
     //needed in case we switch in from another window
     onMounted(async () => {
+      farm.value = props.farm_address.id
       await freshStart();
       updateVideoFiles()
       window.addEventListener('resize', () => {
