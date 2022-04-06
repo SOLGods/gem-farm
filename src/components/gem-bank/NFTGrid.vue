@@ -1,6 +1,5 @@
 <template>
   <div class="nes-container with-title">
-    <p class="title">{{ title }}</p>
     <slot />
     <div class="flex flex-wrap">
       <NFTCard
@@ -21,7 +20,6 @@ export default defineComponent({
   components: { NFTCard },
   emits: ['selected'],
   props: {
-    title: String,
     nfts: Array,
   },
   setup(props, ctx) {
@@ -40,15 +38,5 @@ export default defineComponent({
   position: relative;
   padding: 0 !important;
   background-color: transparent !important;
-}
-.title {
-  position: absolute !important;
-  top: -60px;
-  left: 0;
-}
-@media (max-width: 767px) {
-  .title {
-    top: -84px;
-  }
 }
 </style>

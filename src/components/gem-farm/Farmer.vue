@@ -15,7 +15,13 @@
       <div v-if="!wallet" class="text-center connect-wallet-text">Connect wallet</div>
       <div v-else>
         <div v-if="farmerAcc">
-          <Vault :key="farmerAcc" class="mb-10" :vault="farmerAcc.vault.toBase58()" @selected-wallet-nft="handleNewSelectedNFT">
+          <Vault
+              :key="farmerAcc"
+              class="mb-10"
+              :vault="farmerAcc.vault.toBase58()"
+              :farm_address="farm_address"
+              @selected-wallet-nft="handleNewSelectedNFT"
+          >
             <button v-if="farmerState === 'staked' && selectedNFTs.length > 0" class="app-btn is-primary mr-5" @click="addGems">
               Add Gems (resets staking)
             </button>

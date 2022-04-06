@@ -15,10 +15,13 @@
   </div>
 
   <!--wallet + vault view-->
+  <div class="NFTGrid-titles">
+    <p class="title">Send your {{farm_address.title}} into Meditation</p>
+    <p class="title">Remove  {{farm_address.title}} from the temple</p>
+  </div>
   <div class="flex items-stretch pt-7">
     <!--left-->
     <NFTGrid
-      title="Send your God's into Meditation"
       class="flex-1"
       :nfts="desiredWalletNFTs"
       @selected="handleWalletSelected"
@@ -42,7 +45,6 @@
     <!--right-->
     <NFTGrid
       v-if="bank && vault"
-      title="Send your Fractures into Meditation"
       class="flex-1"
       :nfts="desiredVaultNFTs"
       @selected="handleVaultSelected"
@@ -77,6 +79,12 @@ export default defineComponent({
   components: { ArrowButton, NFTGrid },
   props: {
     vault: String,
+    farm_address: {
+      type: Object,
+      default: () => {
+        return {}
+      }
+    }
   },
   emits: ['selected-wallet-nft'],
   setup(props, ctx) {
@@ -312,5 +320,17 @@ export default defineComponent({
   left: 0;
   opacity: 0.7;
   z-index: 10;
+}
+.NFTGrid-titles {
+  display: flex;
+  justify-content: space-between;
+}
+.NFTGrid-titles .title {
+  width: 100%;
+  margin-bottom: 0 !important;
+  font-size: 26px !important;
+}
+.NFTGrid-titles .title:first-child {
+  margin-right: 60px !important;
 }
 </style>

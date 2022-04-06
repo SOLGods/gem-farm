@@ -3,7 +3,7 @@
 <!--    <TheNavBar />-->
     <div class="app-header">
       <div class="nav-links-wrapper pt-14 text-white">
-        <h2 class="nav-title">The $GOD Temple</h2>
+        <h2 class="nav-title">The Temple</h2>
       </div>
       <div class="nav-links-underline-wrapper">
         <div class="nav-links-underline"></div>
