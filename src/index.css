@@ -1,4 +1,45 @@
-/* ./src/index.css */
-@tailwind base;
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');@tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+@font-face {
+    font-family: 'Medieval English';
+    src: url('./assets/fonts/Medieval-English.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+html {
+    cursor: unset !important;
+}
+
+.nes-select select {
+    cursor: pointer !important;
+}
+
+.title {
+    background-color: transparent !important;
+    font-family: 'Playfair Display', serif;
+    font-size: 28px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    margin-bottom: 15px !important;
+    position: static !important;
+}
+
+.nes-container {
+    background-color: #111111 !important;
+    border: 0 !important;
+}
+
+.app-btn {
+    background-color: transparent !important;
+    padding: 5px 15px 6px;
+    color: white;
+    border-radius: 10px;
+    transition: all .3s ease;
+    border: 1px solid white !important;
+    font-size: 22px;
+}

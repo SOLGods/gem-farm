@@ -1,12 +1,12 @@
 <template>
   <!--control buttons-->
-  <div class="mb-10 flex justify-center">
+  <div class="mb-20 flex justify-center">
     <button
       v-if="
         (toWalletNFTs && toWalletNFTs.length) ||
         (toVaultNFTs && toVaultNFTs.length)
       "
-      class="nes-btn is-primary mr-5"
+      class="app-btn is-primary mr-5"
       @click="moveNFTsOnChain"
     >
       Move Gems!
@@ -15,17 +15,20 @@
   </div>
 
   <!--wallet + vault view-->
-  <div class="flex items-stretch">
+  <div class="NFTGrid-titles">
+    <p class="title">Send your {{farm_address.title}} into Meditation</p>
+    <p class="title">Remove  {{farm_address.title}} from the temple</p>
+  </div>
+  <div class="flex items-stretch pt-7">
     <!--left-->
     <NFTGrid
-      title="Your wallet"
       class="flex-1"
       :nfts="desiredWalletNFTs"
       @selected="handleWalletSelected"
     />
 
     <!--mid-->
-    <div class="m-2 flex flex-col">
+    <div class="my-2 mx-5 flex flex-col">
       <ArrowButton
         :disabled="vaultLocked"
         class="my-2"
@@ -42,7 +45,6 @@
     <!--right-->
     <NFTGrid
       v-if="bank && vault"
-      title="Your vault"
       class="flex-1"
       :nfts="desiredVaultNFTs"
       @selected="handleVaultSelected"
@@ -77,6 +79,12 @@ export default defineComponent({
   components: { ArrowButton, NFTGrid },
   props: {
     vault: String,
+    farm_address: {
+      type: Object,
+      default: () => {
+        return {}
+      }
+    }
   },
   emits: ['selected-wallet-nft'],
   setup(props, ctx) {
@@ -105,14 +113,26 @@ export default defineComponent({
       currentWalletNFTs.value = [];
       selectedWalletNFTs.value = [];
       desiredWalletNFTs.value = [];
-
       if (getWallet()) {
         currentWalletNFTs.value = await getNFTsByOwner(
           getWallet()!.publicKey!,
           getConnection()
         );
-        desiredWalletNFTs.value = [...currentWalletNFTs.value];
-      }
+        console.log('cur', currentWalletNFTs)
+        let solGods = currentWalletNFTs.value.filter((e:any)=> {
+          console.log(e.externalMetadata.name.substring(0,7))
+          return e.externalMetadata.name.substring(0,7) === 'SOLGods'}
+          )
+        let fraktures = currentWalletNFTs.value.filter((e:any)=> {
+          console.log(e.externalMetadata.name.substring(0,12))
+          return e.externalMetadata.name.substring(0,12) === 'The Fracture'}
+          )
+        if (props.farm_address.title === 'SOLGods') {
+          desiredWalletNFTs.value = [...solGods];
+        } else {
+          desiredWalletNFTs.value = [...fraktures];
+        };
+      };
     };
 
     const populateVaultNFTs = async () => {
@@ -312,5 +332,17 @@ export default defineComponent({
   left: 0;
   opacity: 0.7;
   z-index: 10;
+}
+.NFTGrid-titles {
+  display: flex;
+  justify-content: space-between;
+}
+.NFTGrid-titles .title {
+  width: 100%;
+  margin-bottom: 0 !important;
+  font-size: 26px !important;
+}
+.NFTGrid-titles .title:first-child {
+  margin-right: 60px !important;
 }
 </style>

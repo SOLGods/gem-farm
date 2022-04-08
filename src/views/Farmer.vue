@@ -1,76 +1,122 @@
 <template>
-  <ConfigPane />
-  <div v-if="!wallet" class="text-center">Pls connect (burner) wallet</div>
-  <div v-else>
-    <!--farm address-->
-    <div class="nes-container with-title mb-10">
-      <p class="title">Connect to a Farm</p>
-      <div class="nes-field mb-5">
-        <label for="farm">Farm address:</label>
-        <input id="farm" class="nes-input" v-model="farm" />
-      </div>
+  <div class="farmer">
+    <div class="farmer-wallet-wrapper">
+      <button class="farmer-wallet">Connect Wallet</button>
     </div>
+    <h2 class="farmer-title">The $GOD Temple</h2>
+    <div class="farmer-stake-wrapper">
+      <div class="farmer-stake">
+        <div class="farmer-stake-title">Send your God's into Meditation</div>
+        <button class="farmer-stake-button">Stake</button>
+        <div class="farmer-stake-cards">
+          <div class="farmer-stake-card">
 
-    <div v-if="farmerAcc">
-      <FarmerDisplay
-        :key="farmerAcc"
-        :farm="farm"
-        :farmAcc="farmAcc"
-        :farmer="farmer"
-        :farmerAcc="farmerAcc"
-        class="mb-10"
-        @refresh-farmer="handleRefreshFarmer"
-      />
-      <Vault
-        :key="farmerAcc"
-        class="mb-10"
-        :vault="farmerAcc.vault.toBase58()"
-        @selected-wallet-nft="handleNewSelectedNFT"
-      >
-        <button
-          v-if="farmerState === 'staked' && selectedNFTs.length > 0"
-          class="nes-btn is-primary mr-5"
-          @click="addGems"
-        >
-          Add Gems (resets staking)
-        </button>
-        <button
-          v-if="farmerState === 'unstaked'"
-          class="nes-btn is-success mr-5"
-          @click="beginStaking"
-        >
-          Begin staking
-        </button>
-        <button
-          v-if="farmerState === 'staked'"
-          class="nes-btn is-error mr-5"
-          @click="endStaking"
-        >
-          End staking
-        </button>
-        <button
-          v-if="farmerState === 'pendingCooldown'"
-          class="nes-btn is-error mr-5"
-          @click="endStaking"
-        >
-          End cooldown
-        </button>
-        <button class="nes-btn is-warning" @click="claim">
-          Claim {{ availableA }} A / {{ availableB }} B
-        </button>
-      </Vault>
-    </div>
-    <div v-else>
-      <div class="w-full text-center mb-5">
-        Farmer account not found :( Create a new one?
+          </div>
+          <div class="farmer-stake-card">
+
+          </div>
+          <div class="farmer-stake-card">
+
+          </div>
+        </div>
+        <div class="farmer-stake-buttons">
+          <button class="farmer-stake-buttons-item">Claim</button>
+          <button class="farmer-stake-buttons-item">Claim and Unstake</button>
+        </div>
       </div>
-      <div class="w-full text-center">
-        <button class="nes-btn is-primary" @click="initFarmer">
-          New Farmer
-        </button>
+      <div class="farmer-stake">
+        <div class="farmer-stake-title">Send your Fractures into Meditation</div>
+        <button class="farmer-stake-button">Stake</button>
+        <div class="farmer-stake-cards">
+          <div class="farmer-stake-card">
+
+          </div>
+          <div class="farmer-stake-card">
+
+          </div>
+          <div class="farmer-stake-card">
+
+          </div>
+        </div>
+        <div class="farmer-stake-buttons">
+          <button class="farmer-stake-buttons-item">Claim</button>
+          <button class="farmer-stake-buttons-item">Claim and Unstake</button>
+        </div>
       </div>
     </div>
   </div>
+<!--  <ConfigPane />-->
+<!--  <div v-if="!wallet" class="text-center text-white">Pls connect (burner) wallet</div>-->
+<!--  <div v-else>-->
+<!--    &lt;!&ndash;farm address&ndash;&gt;-->
+<!--    <div class="nes-container with-title mb-10">-->
+<!--      <p class="title">Connect to a Farm</p>-->
+<!--      <div class="nes-field mb-5">-->
+<!--        <label for="farm">Farm address:</label>-->
+<!--        <input id="farm" class="nes-input" v-model="farm" />-->
+<!--      </div>-->
+<!--    </div>-->
+
+<!--    <div v-if="farmerAcc">-->
+<!--      <FarmerDisplay-->
+<!--        :key="farmerAcc"-->
+<!--        :farm="farm"-->
+<!--        :farmAcc="farmAcc"-->
+<!--        :farmer="farmer"-->
+<!--        :farmerAcc="farmerAcc"-->
+<!--        class="mb-10"-->
+<!--        @refresh-farmer="handleRefreshFarmer"-->
+<!--      />-->
+<!--      <Vault-->
+<!--        :key="farmerAcc"-->
+<!--        class="mb-10"-->
+<!--        :vault="farmerAcc.vault.toBase58()"-->
+<!--        @selected-wallet-nft="handleNewSelectedNFT"-->
+<!--      >-->
+<!--        <button-->
+<!--          v-if="farmerState === 'staked' && selectedNFTs.length > 0"-->
+<!--          class="nes-btn is-primary mr-5"-->
+<!--          @click="addGems"-->
+<!--        >-->
+<!--          Add Gems (resets staking)-->
+<!--        </button>-->
+<!--        <button-->
+<!--          v-if="farmerState === 'unstaked'"-->
+<!--          class="nes-btn is-success mr-5"-->
+<!--          @click="beginStaking"-->
+<!--        >-->
+<!--          Begin staking-->
+<!--        </button>-->
+<!--        <button-->
+<!--          v-if="farmerState === 'staked'"-->
+<!--          class="nes-btn is-error mr-5"-->
+<!--          @click="endStaking"-->
+<!--        >-->
+<!--          End staking-->
+<!--        </button>-->
+<!--        <button-->
+<!--          v-if="farmerState === 'pendingCooldown'"-->
+<!--          class="nes-btn is-error mr-5"-->
+<!--          @click="endStaking"-->
+<!--        >-->
+<!--          End cooldown-->
+<!--        </button>-->
+<!--        <button class="nes-btn is-warning" @click="claim">-->
+<!--          Claim {{ availableA }} A / {{ availableB }} B-->
+<!--        </button>-->
+<!--      </Vault>-->
+<!--    </div>-->
+<!--    <div v-else>-->
+<!--      <div class="w-full text-center mb-5">-->
+<!--        Farmer account not found :( Create a new one?-->
+<!--      </div>-->
+<!--      <div class="w-full text-center">-->
+<!--        <button class="nes-btn is-primary" @click="initFarmer">-->
+<!--          New Farmer-->
+<!--        </button>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div v-else>-->
 </template>
 
 <script lang="ts">
@@ -263,4 +309,94 @@ export default defineComponent({
 });
 </script>
 
-<style scoped></style>
+<style scoped>
+.farmer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.farmer-wallet-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.farmer-wallet {
+  color: white;
+  padding: 5px 10px;
+  border: 1px solid white;
+  box-shadow: 0 0 5px white;
+  background: transparent;
+  border-radius: 5px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+}
+.farmer-title {
+  text-align: center;
+  color: white;
+  font-size: 58px;
+  font-weight: bold;
+  margin-top: 25px;
+  font-family: 'Playfair Display', serif;
+}
+.farmer-stake-wrapper {
+  display: flex;
+}
+.farmer-stake {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
+}
+.farmer-stake:first-child {
+  margin-right: 50px;
+}
+.farmer-stake-cards {
+  display: flex;
+  align-items: center;
+}
+.farmer-stake-card {
+  width: 120px;
+  height: 120px;
+  border: 3px solid white;
+  margin: 0 15px;
+}
+.farmer-stake-title {
+  color: white;
+  text-align: center;
+  font-family: 'Playfair Display', serif;
+  font-size: 30px;
+}
+.farmer-stake-button {
+  color: white;
+  padding: 5px 15px;
+  border: 1px solid white;
+  box-shadow: 0 0 5px white;
+  background: transparent;
+  border-radius: 10px;
+  margin: 30px 0 50px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+}
+.farmer-stake-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 100px;
+  width: 100%;
+  padding: 0 20px;
+}
+.farmer-stake-buttons-item {
+  color: white;
+  padding: 5px 15px;
+  border: 1px solid white;
+  box-shadow: 0 0 5px white;
+  background: transparent;
+  border-radius: 10px;
+  margin: 30px 0 50px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+}
+</style>

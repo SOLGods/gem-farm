@@ -1,6 +1,5 @@
 <template>
   <div class="nes-container with-title">
-    <p class="title">{{ title }}</p>
     <slot />
     <div class="flex flex-wrap">
       <NFTCard
@@ -21,7 +20,6 @@ export default defineComponent({
   components: { NFTCard },
   emits: ['selected'],
   props: {
-    title: String,
     nfts: Array,
   },
   setup(props, ctx) {
@@ -35,4 +33,10 @@ export default defineComponent({
 });
 </script>
 
-<style scoped></style>
+<style scoped>
+.nes-container {
+  position: relative;
+  padding: 0 !important;
+  background-color: transparent !important;
+}
+</style>

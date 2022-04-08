@@ -32,5 +32,13 @@ export default {};
   position: absolute;
   bottom: 0px;
   height: 40px;
+  background-color: #111111;
+  color: white;
+  font-family: 'Nanum Myeongjo', serif !important;
+}
+.footer p {
+  display: flex;
+  align-items: center;
+  font-size: 18px;
 }
 </style>
