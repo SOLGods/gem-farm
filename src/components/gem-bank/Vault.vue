@@ -113,14 +113,26 @@ export default defineComponent({
       currentWalletNFTs.value = [];
       selectedWalletNFTs.value = [];
       desiredWalletNFTs.value = [];
-
       if (getWallet()) {
         currentWalletNFTs.value = await getNFTsByOwner(
           getWallet()!.publicKey!,
           getConnection()
         );
-        desiredWalletNFTs.value = [...currentWalletNFTs.value];
-      }
+        console.log('cur', currentWalletNFTs)
+        let solGods = currentWalletNFTs.value.filter((e:any)=> {
+          console.log(e.externalMetadata.name.substring(0,7))
+          return e.externalMetadata.name.substring(0,7) === 'SOLGods'}
+          )
+        let fraktures = currentWalletNFTs.value.filter((e:any)=> {
+          console.log(e.externalMetadata.name.substring(0,12))
+          return e.externalMetadata.name.substring(0,12) === 'The Fracture'}
+          )
+        if (props.farm_address.title === 'SOLGods') {
+          desiredWalletNFTs.value = [...solGods];
+        } else {
+          desiredWalletNFTs.value = [...fraktures];
+        };
+      };
     };
 
     const populateVaultNFTs = async () => {

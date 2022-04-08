@@ -12,7 +12,7 @@
     </div>
     <div class="nes-select is-dark flex-1">
       <select required id="cluster" v-model="selectedFarm" @change="selectedFarm && $emit('update-farm-address', selectedFarm)">
-        <option class="text-gray-500" :value="null">Choose farm..</option>
+        <option class="text-gray-500" :value="null">Choose collection..</option>
         <option v-for="item in farms" :key="item.title" :value="item">
           {{ item.title }}
         </option>

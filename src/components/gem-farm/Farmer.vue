@@ -35,8 +35,11 @@
               End cooldown
             </button>
             <button class="app-btn is-warning" @click="claim">
-              Claim {{ availableA }} A / {{ availableB }} B
+              {{ (farmerAcc.rewardA.accruedReward/1000000).toFixed(3)}} $GOD
             </button>
+          <!--  <button v-if="farmerState === 'staked'" class="app-btn is-error mr-5" @click="refreshFarmer"> -->
+          <!--    Refresh Rewards -->
+          <!--  </button> -->
           </Vault>
         </div>
         <div v-else>
@@ -195,7 +198,16 @@ export default defineComponent({
       // video.value.onended = () => {
       //   video.value.style.opacity = '0'
       // };
-    }
+    };
+
+    const refreshFarmer = async () => {
+      console.log(`Refreshing farmer ${farmerAcc.value}`);
+      await gf.refreshFarmerWallet(
+        new PublicKey(farm.value!),
+        new PublicKey(farmerAcc.value!),
+      );
+      console.log("Refreshed farmer");
+    };
 
     const endStaking = async () => {
       await gf.unstakeWallet(new PublicKey(farm.value!));
@@ -270,6 +282,7 @@ export default defineComponent({
       endStaking,
       claim,
       handleRefreshFarmer,
+      refreshFarmer,
       selectedNFTs,
       handleNewSelectedNFT,
       addGems,
